@@ -43,7 +43,7 @@ class Heading(Node):
         yield self.title
 
     def __strip__(self, **kwargs):
-        return self.title.strip_code(**kwargs)
+        return ("=" * self.level) + self.title.strip_code(**kwargs) + ("=" * self.level) #.title.strip_code(**kwargs)
 
     def __showtree__(self, write, get, mark):
         write("=" * self.level)

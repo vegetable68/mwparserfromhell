@@ -59,8 +59,15 @@ class Template(Node):
             yield param.value
 
     def __strip__(self, **kwargs):
+        parts = [param.value.strip_code(**kwargs) for param in self.params]
+        if self.name.lower() == 'reply to' or self.name.lower() == 'ping' or self.name.lower() == 're' \
+           or self.name.lower()== 'replyto' or self.name.lower() == 'reply' or self.name.lower() == 'yo' \
+           or self.name.lower() == 'hidden ping' or self.name.lower() == 'to':
+            return "[REPLY_TO: " + " ".join(part for part in parts if part) + "]"
+        if self.name.lower() == 'noping' or self.name.lower() == 'user_link' \
+           or self.name.lower() == 'talkback':
+            return "[MENTION: " + " ".join(part for part in parts if part) + "]"
         if kwargs.get("keep_template_params"):
-            parts = [param.value.strip_code(**kwargs) for param in self.params]
             return " ".join(part for part in parts if part)
         return None
 

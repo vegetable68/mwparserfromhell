@@ -99,6 +99,10 @@ class Tag(Node):
             yield self.closing_tag
 
     def __strip__(self, **kwargs):
+        if self.wiki_markup:
+            tmp = self.wiki_markup 
+            if tmp == ':' or  tmp == '*':
+               return tmp 
         if self.contents and is_visible(self.tag):
             return self.contents.strip_code(**kwargs)
         return None
