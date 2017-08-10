@@ -71,7 +71,9 @@ class Template(Node):
             if not(parts == []):
                x = parts[0]
                if x[0] == ':': param = len(x) else: param = int(x)
-            return "[OUTDENT: " + str(x) + "]"
+               return "[OUTDENT: " + str(param) + "]"
+            else:
+               return "[OUTDENT: " + str(99) + "]"
         if kwargs.get("keep_template_params"):
             return " ".join(part for part in parts if part)
         return None
