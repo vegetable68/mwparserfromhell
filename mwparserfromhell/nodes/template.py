@@ -67,6 +67,11 @@ class Template(Node):
         if self.name.lower() == 'noping' or self.name.lower() == 'user_link' \
            or self.name.lower() == 'talkback':
             return "[MENTION: " + " ".join(part for part in parts if part) + "]"
+        if self.name.lower() == 'outdent' or self.name.lower() == 'od':
+            if not(parts == []):
+               x = parts[0]
+               if x[0] == ':': param = len(x) else: param = int(x)
+            return "[OUTDENT: " + str(x) + "]"
         if kwargs.get("keep_template_params"):
             return " ".join(part for part in parts if part)
         return None
