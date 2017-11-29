@@ -70,7 +70,9 @@ class Template(Node):
         if self.name.lower() == 'outdent' or self.name.lower() == 'od':
             if not(parts == []):
                x = parts[0]
-               if x[0] == ':': param = len(x) else: param = int(x)
+               if x[0] == ':': 
+                  param = len(x) 
+               else: param = int(x)
                return "[OUTDENT: " + str(param) + "]"
             else:
                return "[OUTDENT: " + str(99) + "]"
